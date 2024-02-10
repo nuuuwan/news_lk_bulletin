@@ -1,5 +1,6 @@
 import pathlib
 import shutil
+import random
 from functools import cached_property
 
 from utils import TIME_FORMAT_TIME, File, Log, Time, get_time_id
@@ -25,6 +26,8 @@ class NewsBulletin:
             if news_article.original_lang == 'en'
         ]
         recent_news_article_list = en_news_article_list[: self.max_articles]
+        random.shuffle(recent_news_article_list)
+
         lines = []
         n_total = 0
         for news_article in recent_news_article_list:

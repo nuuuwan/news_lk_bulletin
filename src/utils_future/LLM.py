@@ -12,7 +12,9 @@ class LLM:
 
     def __init__(self, openai_api_key: str):
         self.messages = []
-        openai.api_key = openai_api_key  # noqa
+        self.openai_client = openai.OpenAI(
+            api_key=openai_api_key,
+        )
 
     def append(self, role: str, content: str):
         self.messages.append(
@@ -28,12 +30,13 @@ class LLM:
 
     def send(self) -> str:
         log.debug(f'Sending ({self.len_messages:,}B)...')
-        response = openai.ChatCompletion.create(
+        completion  = self.openai_client.chat.completions.create(
             messages=self.messages,
             model=LLM.DEFAULT_MODEL,
             **LLM.DEFAULT_OPTIONS,
         )
-        reply = response['choices'][0]['message']['content']
+        reply = completion.choices[0].message.content
+
         self.append('assistant', reply)
         log.debug(f'Received reply ({self.len_messages:,}B)')
         return reply
