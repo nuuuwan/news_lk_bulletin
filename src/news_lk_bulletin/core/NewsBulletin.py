@@ -66,7 +66,8 @@ class NewsBulletin:
                 'SORT news by practical use to ordinary Sri Lankan citizens.'
                 'DO prioritize facts over opinions.',
                 'DO use emojis and Markdown Bold/Italics for readability.',
-                'DO NOT repeat news.',
+                'DO include named entities and statistics',
+                'DO NOT repeat information.',
                 'DO NOT quote sources.',
                 'DO NOT include facts that seem marketing or propaganda.',
             ]
