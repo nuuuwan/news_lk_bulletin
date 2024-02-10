@@ -1,5 +1,4 @@
 import pathlib
-import random
 import shutil
 from functools import cached_property
 
@@ -12,39 +11,42 @@ log = Log('NewsArticleBulletin')
 
 
 class NewsBulletin:
-    def __init__(self, llm: LLM, max_articles, max_data_bytes: int):
+    MAX_DATA_BYTES = 30_000
+
+    def __init__(self, llm: LLM):
         self.llm = llm
-        self.max_articles = max_articles
-        self.max_data_bytes = max_data_bytes
 
     @cached_property
     def blurb(self) -> str:
         news_article_list = NewsArticle.list_all()
-        en_news_article_list = [
+        news_article_list = [
             news_article
             for news_article in news_article_list
             if news_article.original_lang == 'en'
         ]
-        recent_news_article_list = en_news_article_list[: self.max_articles]
-        random.shuffle(recent_news_article_list)
 
         lines = []
         n_total = 0
-        for news_article in recent_news_article_list:
+        n_articles = 0
+        for news_article in news_article_list:
             article_lines = []
             article_lines.append('# ' + news_article.original_title)
             article_lines.append(f'*{news_article.time_str}*')
             article_lines.append(
                 f'[{news_article.newspaper_id}]({news_article.url})'
             )
-            article_lines.extend(news_article.original_body_lines)
+            body_lines = news_article.original_body_lines_shorter
+            article_lines.extend(body_lines)
             article_lines.append('')
             article_blurb = '\n\n'.join(article_lines)
             n_article = len(article_blurb)
-            if n_total + n_article > self.max_data_bytes:
+            if n_total + n_article > NewsBulletin.MAX_DATA_BYTES:
                 break
             n_total += n_article
             lines.append(article_blurb)
+            n_articles += 1
+
+        lines = [f'Based on **{n_articles:,}** News Articles.'] + lines
 
         return '\n\n'.join(lines)
 
@@ -54,9 +56,11 @@ class NewsBulletin:
             [
                 'Summarize the following set of news articles',
                 'into 10 bullets.',
-                'DO NOT repeat facts.',
-                'DO use emojis, handles and hashtags for a better readability.',
+                'DO prioritize news that might be of practical use.',
+                'SORT news by practical use to ordinary Sri Lankan citizens.'
                 'DO prioritize facts over opinions.',
+                'DO use emojis and Markdown Bold/Italics for readability.',
+                'DO NOT repeat news.',
                 'DO NOT include facts that seem marketing or propaganda.',
             ]
         )

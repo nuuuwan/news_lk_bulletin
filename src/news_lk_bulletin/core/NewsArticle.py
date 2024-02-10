@@ -63,6 +63,20 @@ class NewsArticle:
     def original_body_lines(self) -> list[str]:
         return self.detailed_data['original_body_lines']
 
+    @cached_property
+    def original_body_lines_shorter(self) -> list[str]:
+        MAX_CHARS = 512
+        n_total = 0
+        lines = []
+        for line in self.original_body_lines:
+            n_line = len(line)
+            if n_total + n_line > MAX_CHARS:
+                lines.append('...')
+                break
+            n_total += n_line
+            lines.append(line)
+        return lines
+
     @staticmethod
     def download_summary():
         www = WWW(NewsArticle.URL_SUMMARY)
