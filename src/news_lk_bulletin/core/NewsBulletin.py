@@ -2,7 +2,7 @@ import pathlib
 import shutil
 from functools import cached_property
 
-from utils import TIME_FORMAT_TIME, File, Log, Time, get_time_id
+from utils import TIME_FORMAT_TIME, File, Log, Time, get_time_id, SECONDS_IN
 
 from news_lk_bulletin.core.NewsArticle import NewsArticle
 from utils_future import LLM
@@ -11,7 +11,7 @@ log = Log('NewsArticleBulletin')
 
 
 class NewsBulletin:
-    MAX_DATA_BYTES = 30_000
+    MAX_DATA_BYTES = 28_000
 
     def __init__(self, llm: LLM):
         self.llm = llm
@@ -27,7 +27,7 @@ class NewsBulletin:
 
         lines = []
         n_total = 0
-        n_articles = 0
+        used_articles = []
         for news_article in news_article_list:
             article_lines = []
             article_lines.append('# ' + news_article.original_title)
@@ -44,9 +44,15 @@ class NewsBulletin:
                 break
             n_total += n_article
             lines.append(article_blurb)
-            n_articles += 1
+            used_articles.append(news_article)
 
-        lines = [f'Based on **{n_articles:,}** News Articles.'] + lines
+        n_articles = len(used_articles)
+        dt = used_articles[0].time_ut - used_articles[-1].time_ut
+        dt_hours = dt / SECONDS_IN.HOUR
+        lines = [
+            f'Based on **{n_articles:,}** News Articles,'
+            + f' from the last **{dt_hours:.0f}** hours.'
+        ] + lines
 
         return '\n\n'.join(lines)
 
@@ -61,6 +67,7 @@ class NewsBulletin:
                 'DO prioritize facts over opinions.',
                 'DO use emojis and Markdown Bold/Italics for readability.',
                 'DO NOT repeat news.',
+                'DO NOT quote sources.',
                 'DO NOT include facts that seem marketing or propaganda.',
             ]
         )
