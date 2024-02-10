@@ -35,7 +35,7 @@ class NewsBulletin:
                 f'[{news_article.newspaper_id}]({news_article.url})'
             )
             article_lines.extend(news_article.original_body_lines)
-            article_lines.append('---')
+            article_lines.append('')
             article_blurb = '\n\n'.join(article_lines)
             n_article = len(article_blurb)
             if n_total + n_article > self.max_data_bytes:
@@ -79,12 +79,6 @@ class NewsBulletin:
             f'*Updated* **{time_str}**',
             '',
             self.bulletin,
-            '',
-            '## Summarization by #ChatGPT4.',
-            '',
-            '```',
-            self.system_cmd,
-            '```',
             '',
             '## Source News',
             '',
