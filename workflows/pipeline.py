@@ -1,8 +1,13 @@
-from news_lk_bulletin import NewsArticleBulletin
+import os
+
+from news_lk_bulletin import NewsBulletin
+from utils_future import LLM
 
 
 def main():
-    print(NewsArticleBulletin().blurb)
+    openai_api_key = os.environ['OPENAI_API_KEY']
+    llm = LLM(openai_api_key)
+    NewsBulletin(llm=llm, max_articles=100, max_data_bytes=35_000).write()
 
 
 if __name__ == "__main__":

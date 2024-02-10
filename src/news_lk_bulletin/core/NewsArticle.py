@@ -15,7 +15,7 @@ class NewsArticle:
     newspaper_id: str
     time_str: str
     original_title: str
-    n_original_body_lines: int
+    n_original_body_lines: int  # noqa
     hash: str
     time_ut: float
     original_lang: str

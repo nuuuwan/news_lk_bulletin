@@ -13,10 +13,9 @@ class WWW:
 
     def download(self, path: pathlib.Path):
         if os.path.exists(path):
-            log.info(f'File already exists: {path}')
+            log.debug(f'Already exists: {path}')
             return
 
-        log.info(f'Downloading {self.url} to {path}')
         response = requests.get(self.url)
         output_file = File(path)
         output_file.write(response.text)
