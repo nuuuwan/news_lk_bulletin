@@ -1,6 +1,6 @@
 import pathlib
-import shutil
 import random
+import shutil
 from functools import cached_property
 
 from utils import TIME_FORMAT_TIME, File, Log, Time, get_time_id

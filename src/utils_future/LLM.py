@@ -30,7 +30,7 @@ class LLM:
 
     def send(self) -> str:
         log.debug(f'Sending ({self.len_messages:,}B)...')
-        completion  = self.openai_client.chat.completions.create(
+        completion = self.openai_client.chat.completions.create(
             messages=self.messages,
             model=LLM.DEFAULT_MODEL,
             **LLM.DEFAULT_OPTIONS,
