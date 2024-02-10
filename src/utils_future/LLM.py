@@ -27,6 +27,7 @@ class LLM:
         return sum([len(message['content']) for message in self.messages])
 
     def send(self) -> str:
+        return ''
         log.debug(f'Sending ({self.len_messages:,}B)...')
         response = openai.ChatCompletion.create(
             messages=self.messages,
