@@ -74,7 +74,7 @@ class NewsBulletin:
         time_str = TIME_FORMAT_TIME.stringify(Time.now())
 
         return [
-            '# News Bulletin',
+            '# #SriLanka🇱🇰 News Bulletin',
             '',
             f'*Updated* **{time_str}**',
             '',
