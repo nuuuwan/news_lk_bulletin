@@ -91,10 +91,12 @@ class NewsBulletin:
         return [
             '# #SriLanka🇱🇰 News Bulletin',
             '',
+            '<div id="news_lk_bulletin">',
             f'*Updated* **{time_str}**',
             '',
             self.bulletin,
             '',
+            '</div>',
             '## Source News',
             '',
             self.blurb,
