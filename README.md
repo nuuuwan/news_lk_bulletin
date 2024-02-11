@@ -1,3 +1,4 @@
+<div id="bulletin">
 # #SriLanka🇱🇰 News Bulletin
 
 *Updated* **2024-02-11 07:17:17**
@@ -13,6 +14,8 @@
 9. **Sri Lanka Transport Board (SLTB)** added 200 renovated buses to its fleet 🚌
 10. **Public Utilities Commission of Sri Lanka (PUCSL)** will announce the next electricity tariff revision after February 15 💡.
 
+</div>
+    
 ## Source News
 
 Based on **52** News Articles, from the last **15** hours.
