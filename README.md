@@ -1,7 +1,8 @@
 # #SriLanka🇱🇰 News Bulletin
 
-<div id="news_lk_bulletin">
 *Updated* **2024-02-11 12:35:12**
+
+<div id="news_lk_bulletin">
 
 1. **President Ranil Wickremesinghe** met with **India’s External Affairs Minister Dr. S. Jaishankar** in Australia to discuss bilateral cooperation. 🇱🇰🇮🇳
 2. **Pakistan's national elections** resulted in a disputed victory, with both **Imran Khan** and **Nawaz Sharif** claiming wins. 🗳️🇵🇰
@@ -15,6 +16,7 @@
 10. **Water supply** in parts of Colombo will be suspended for 15 hours due to essential maintenance work. 🚱🔧
 
 </div>
+
 ## Source News
 
 Based on **49** News Articles, from the last **15** hours.
