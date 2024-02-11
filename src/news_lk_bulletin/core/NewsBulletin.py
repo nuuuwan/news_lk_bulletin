@@ -61,7 +61,7 @@ class NewsBulletin:
         return ' '.join(
             [
                 'Summarize the following set of news articles',
-                'into 10 bullets.',
+                'into 10 detailes bullets.',
                 'DO prioritize news that might be of practical use.',
                 'SORT news by practical use to ordinary Sri Lankan citizens.'
                 'DO prioritize facts over opinions.',
