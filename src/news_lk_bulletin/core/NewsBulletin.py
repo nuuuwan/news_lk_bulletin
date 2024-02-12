@@ -11,7 +11,7 @@ log = Log('NewsArticleBulletin')
 
 
 class NewsBulletin:
-    MAX_DATA_BYTES = 29_000
+    MAX_DATA_BYTES = 24_000
 
     def __init__(self, llm: LLM):
         self.llm = llm
