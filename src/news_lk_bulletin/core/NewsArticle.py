@@ -104,7 +104,7 @@ class NewsArticle:
 
     @cached_property
     def en_body_lines_shorter(self) -> list[str]:
-        MAX_CHARS = 512
+        MAX_CHARS = 640
         n_total = 0
         lines = []
         for line in self.en_body_lines:
