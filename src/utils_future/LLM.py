@@ -8,7 +8,7 @@ class LLM:
     DEFAULT_OPTIONS = dict(
         temperature=0.1,
     )
-    DEFAULT_MODEL = 'gpt-4'
+    DEFAULT_MODEL = 'gpt-4-turbo-preview'
 
     def __init__(self, openai_api_key: str):
         self.messages = []
