@@ -77,8 +77,10 @@ class NewsBulletin:
     def bulletin(self) -> str:
         self.llm.append('system', self.system_cmd)
         self.llm.append('user', self.blurb)
-        return self.llm.send()
-
+        bulletin = self.llm.send()
+        bulletin = bulletin.replace('Source:', '')
+        return bulletin
+    
     @cached_property
     def path(self) -> pathlib.Path:
         time_id = get_time_id()
