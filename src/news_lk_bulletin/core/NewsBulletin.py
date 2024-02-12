@@ -77,6 +77,8 @@ class NewsBulletin:
                 'DO mention the name of the source, briefly as "[newspaper]".',
                 'DO include named entities and statistics.',
                 'DO use bold and italics for emphasis.',
+                '\n\n',
+                'Articles:',
             ]
         )
 
