@@ -60,15 +60,54 @@ class NewsArticle:
         return JSONFile(self.detailed_data_path).read()
 
     @cached_property
-    def original_body_lines(self) -> list[str]:
-        return self.detailed_data['original_body_lines']
+    def url_extended_data(self) -> str:
+        return (
+            'https://raw.githubusercontent.com'
+            + '/nuuuwan/news_lk3_data/main/ext_articles'
+            + f'/{self.hash}.ext.json'
+        )
 
     @cached_property
-    def original_body_lines_shorter(self) -> list[str]:
+    def extended_data_path(self) -> str:
+        return pathlib.Path(
+            tempfile.gettempdir(), f'news_lk.{self.hash}.ext.json'
+        )
+
+    @cached_property
+    def extended_data(self) -> dict:
+        WWW(self.url_extended_data).download(self.extended_data_path)
+        return JSONFile(self.extended_data_path).read()
+
+    @cached_property
+    def en_title(self) -> str:
+        if self.original_lang == 'en':
+            return self.original_title
+
+        extended_data = self.extended_data
+        if 'translated_text' not in extended_data:
+            return None
+        if 'en' not in extended_data['translated_text']:
+            return None
+        return extended_data['translated_text']['en']['title']
+
+    @cached_property
+    def en_body_lines(self) -> list[str]:
+        if self.original_lang == 'en':
+            return self.detailed_data['original_body_lines']
+
+        extended_data = self.extended_data
+        if 'translated_text' not in extended_data:
+            return None
+        if 'en' not in extended_data['translated_text']:
+            return None
+        return extended_data['translated_text']['en']['body_lines']
+
+    @cached_property
+    def en_body_lines_shorter(self) -> list[str]:
         MAX_CHARS = 512
         n_total = 0
         lines = []
-        for line in self.original_body_lines:
+        for line in self.en_body_lines:
             n_line = len(line)
             if n_total + n_line > MAX_CHARS:
                 lines.append('...')

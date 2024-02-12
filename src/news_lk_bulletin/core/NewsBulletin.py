@@ -2,7 +2,7 @@ import pathlib
 import shutil
 from functools import cached_property
 
-from utils import TIME_FORMAT_TIME, File, Log, Time, get_time_id, SECONDS_IN
+from utils import SECONDS_IN, TIME_FORMAT_TIME, File, Log, Time, get_time_id
 
 from news_lk_bulletin.core.NewsArticle import NewsArticle
 from utils_future import LLM
@@ -16,29 +16,35 @@ class NewsBulletin:
     def __init__(self, llm: LLM):
         self.llm = llm
 
+    @staticmethod
+    def get_article_blurb(news_article: NewsArticle) -> str:
+        if news_article.en_title is None:
+            return None
+        article_lines = []
+        article_lines.append('# ' + news_article.en_title)
+        article_lines.append(f'*{news_article.time_str}*')
+        article_lines.append(
+            f'[{news_article.newspaper_id}]({news_article.url})'
+        )
+        body_lines = news_article.en_body_lines_shorter
+        article_lines.extend(body_lines)
+        article_lines.append('')
+        article_blurb = '\n\n'.join(article_lines)
+        return article_blurb
+
     @cached_property
     def blurb(self) -> str:
         news_article_list = NewsArticle.list_all()
-        news_article_list = [
-            news_article
-            for news_article in news_article_list
-            if news_article.original_lang == 'en'
-        ]
+        log.debug(f'Loaded {len(news_article_list)} news articles')
 
         lines = []
         n_total = 0
         used_articles = []
         for news_article in news_article_list:
-            article_lines = []
-            article_lines.append('# ' + news_article.original_title)
-            article_lines.append(f'*{news_article.time_str}*')
-            article_lines.append(
-                f'[{news_article.newspaper_id}]({news_article.url})'
-            )
-            body_lines = news_article.original_body_lines_shorter
-            article_lines.extend(body_lines)
-            article_lines.append('')
-            article_blurb = '\n\n'.join(article_lines)
+            article_blurb = NewsBulletin.get_article_blurb(news_article)
+            if not article_blurb:
+                continue
+
             n_article = len(article_blurb)
             if n_total + n_article > NewsBulletin.MAX_DATA_BYTES:
                 break
@@ -61,15 +67,16 @@ class NewsBulletin:
         return ' '.join(
             [
                 'Summarize the following set of news articles',
-                'into 10 detailes bullets.',
+                'into 10 detailed bullets.',
+                'DO NOT include news that does not reference Sri Lanka'
+                + ' or something Sri Lankan.',
                 'DO prioritize news that might be of practical use.',
-                'SORT news by practical use to ordinary Sri Lankan citizens.'
-                'DO prioritize facts over opinions.',
-                'DO mention the name of the source, briefly.',
-                'DO include named entities and statistics',
-                'DO NOT include news that does not reference Sri Lanka'+' or something Sri Lankan.',
                 'DO NOT repeat information.',
                 'DO NOT include facts that seem marketing or propaganda.',
+                'DO prioritize facts over opinions.',
+                'DO mention the name of the source, briefly as "[newspaper]".',
+                'DO include named entities and statistics.',
+                'DO use bold and italics for emphasis.',
             ]
         )
 
@@ -80,7 +87,7 @@ class NewsBulletin:
         bulletin = self.llm.send()
         bulletin = bulletin.replace('Source:', '')
         return bulletin
-    
+
     @cached_property
     def path(self) -> pathlib.Path:
         time_id = get_time_id()
