@@ -66,15 +66,15 @@ class NewsBulletin:
     def system_cmd(self) -> str:
         return ' '.join(
             [
-                'Extract objective facts from this set of news articles',
-                'into 10 detailed bullets.',
+                'Extract objective facts from this set of news articles,',
+                'that might be of practical use to ordinary Sri Lankans,'
+                'and present as 10 detailed bullets.',
                 'EXCLUDE news not directly relevant to Sri Lanka.',
-                'PRIORITIZE news that is of practical use to Sri Lankans.',
                 'DO NOT repeat facts.',
                 'EXCLUDE marketing/propaganda.',
                 'EXCLUDE political opinions/statements by politicians.',
                 'DO mention the name of the source, as "[newspaper]".',
-                'EMPHASIZE entities and statistics in bold',
+                'EMPHASIZE named entities and statistics in bold.',
             ]
         )
 
