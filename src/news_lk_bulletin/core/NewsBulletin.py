@@ -106,7 +106,7 @@ class NewsBulletin:
             '',
             '</div>',
             '',
-            '[Previous](data) Bulletins'
+            '[Previous](data) Bulletins',
             '',
             '## Methodology',
             '',
