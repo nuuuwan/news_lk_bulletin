@@ -119,7 +119,7 @@ class NewsArticle:
     @staticmethod
     def download_summary():
         www = WWW(NewsArticle.URL_SUMMARY)
-        www.download(NewsArticle.TEMP_SUMMARY_PATH)
+        www.download(NewsArticle.TEMP_SUMMARY_PATH, force=True)
 
     @staticmethod
     def get_summary_list() -> list[dict]:
