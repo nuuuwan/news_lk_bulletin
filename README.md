@@ -1,6 +1,6 @@
 # #SriLanka :sri_lanka: News Bulletin
 
-<div id="news_lk_bulletin">
+<div id="news_lk_bulletin" style="font-family:monospace">
 
 *Updated* **2024-02-13 12:10:28**
 
