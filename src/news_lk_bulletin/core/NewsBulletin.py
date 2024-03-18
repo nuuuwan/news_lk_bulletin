@@ -70,10 +70,10 @@ class NewsBulletin:
                 'that might be of practical use to ordinary Sri Lankans,'
                 'and present as 10 detailed bullets.',
                 'EXCLUDE news not directly relevant to Sri Lanka.',
-                'DO NOT repeat facts.',
-                'EXCLUDE marketing/propaganda.',
+                'DO NOT duplicate repeat news articles.',
                 'EXCLUDE political opinions/statements by politicians.',
-                'DO mention the name of the source, as "[newspaper]".',
+                'EXCLUDE marketing/propaganda.',
+                DO mention the name of the source, as "[newspaper]".',
                 'EMPHASIZE named entities and statistics in bold.',
             ]
         )
