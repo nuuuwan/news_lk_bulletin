@@ -75,15 +75,20 @@ class NewsArticle:
 
     @cached_property
     def extended_data(self) -> dict:
-        WWW(self.url_extended_data).download(self.extended_data_path)
-        return JSONFile(self.extended_data_path).read()
-
+        try:
+            WWW(self.url_extended_data).download(self.extended_data_path)
+            return JSONFile(self.extended_data_path).read()
+        except:
+            return None
+        
     @cached_property
     def en_title(self) -> str:
         if self.original_lang == 'en':
             return self.original_title
 
         extended_data = self.extended_data
+        if not extended_data:
+            return None
         if 'translated_text' not in extended_data:
             return None
         if 'en' not in extended_data['translated_text']:
