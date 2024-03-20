@@ -78,9 +78,9 @@ class NewsArticle:
         try:
             WWW(self.url_extended_data).download(self.extended_data_path)
             return JSONFile(self.extended_data_path).read()
-        except:
+        except BaseException:
             return None
-        
+
     @cached_property
     def en_title(self) -> str:
         if self.original_lang == 'en':

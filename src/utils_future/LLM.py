@@ -9,7 +9,9 @@ class LLM:
         temperature=0.1,
     )
     DEFAULT_MODEL = 'gpt-4-0125-preview'
-    DEFAULT_MODEL_URL = 'https://platform.openai.com'+'/docs/models/gpt-4-and-gpt-4-turbo'
+    DEFAULT_MODEL_URL = (
+        'https://platform.openai.com' + '/docs/models/gpt-4-and-gpt-4-turbo'
+    )
     MAX_DATA_BYTES = 120_000
 
     def __init__(self, openai_api_key: str):

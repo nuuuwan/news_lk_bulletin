@@ -11,8 +11,6 @@ log = Log('NewsArticleBulletin')
 
 
 class NewsBulletin:
-   
-
     def __init__(self, llm: LLM):
         self.llm = llm
 
