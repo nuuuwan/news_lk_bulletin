@@ -73,7 +73,7 @@ class NewsBulletin:
                 'DO NOT duplicate repeat news articles.',
                 'EXCLUDE political opinions/statements by politicians.',
                 'EXCLUDE marketing/propaganda.',
-                DO mention the name of the source, as "[newspaper]".',
+                'DO mention the name of the source, as "[newspaper]".',
                 'EMPHASIZE named entities and statistics in bold.',
             ]
         )
