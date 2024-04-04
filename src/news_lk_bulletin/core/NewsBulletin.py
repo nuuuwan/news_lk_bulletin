@@ -2,7 +2,7 @@ import pathlib
 import shutil
 from functools import cached_property
 
-from utils import SECONDS_IN, TIME_FORMAT_TIME, File, Log, Time, get_time_id
+from utils import TimeUnit, TimeFormat, File, Log, Time
 
 from news_lk_bulletin.core.NewsArticle import NewsArticle
 from utils_future import LLM
@@ -52,7 +52,7 @@ class NewsBulletin:
 
         n_articles = len(used_articles)
         dt = used_articles[0].time_ut - used_articles[-1].time_ut
-        dt_hours = dt / SECONDS_IN.HOUR
+        dt_hours = dt / TimeUnit.SECONDS_IN.HOUR
         lines = [
             f'Based on **{n_articles:,}** News Articles,'
             + f' from the last **{dt_hours:.0f}** hours.'
@@ -86,12 +86,12 @@ class NewsBulletin:
 
     @cached_property
     def path(self) -> pathlib.Path:
-        time_id = get_time_id()
+        time_id = TimeFormat.TIME_ID.formatNow
         return pathlib.Path('data', f'{time_id}.md')
 
     @cached_property
     def all_lines(self) -> list[str]:
-        time_str = TIME_FORMAT_TIME.stringify(Time.now())
+        time_str = TimeFormat.TIME.stringify(Time.now())
 
         return [
             '# #SriLanka :sri_lanka: News Bulletin',
