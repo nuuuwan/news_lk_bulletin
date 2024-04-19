@@ -11,7 +11,7 @@ class LLMMistralAI(LLM):
     NAME = 'MistralAI'
     DEFAULT_MODEL = 'mistral-large-latest'
     DEFAULT_MODEL_URL = 'https://mistral.ai/news/mistral-large/'
-    MAX_DATA_BYTES = 100_000
+    MAX_DATA_BYTES = 80_000
     DEFAULT_OPTIONS = {}
 
     @staticmethod
