@@ -1,2 +1,3 @@
 utils-nuuuwan
 openai
+mistralai
