@@ -1,24 +1,12 @@
-import openai
 from utils import Log
 
 log = Log('LLM')
 
 
 class LLM:
-    DEFAULT_OPTIONS = dict(
-        temperature=0.1,
-    )
-    DEFAULT_MODEL = 'gpt-4-0125-preview'
-    DEFAULT_MODEL_URL = (
-        'https://platform.openai.com' + '/docs/models/gpt-4-and-gpt-4-turbo'
-    )
-    MAX_DATA_BYTES = 120_000
-
-    def __init__(self, openai_api_key: str):
+    def __init__(self, api_key: str):
         self.messages = []
-        self.openai_client = openai.OpenAI(
-            api_key=openai_api_key,
-        )
+        self.client = self.build_client(api_key)
 
     def append(self, role: str, content: str):
         self.messages.append(
@@ -32,14 +20,15 @@ class LLM:
     def len_messages(self):
         return sum([len(message['content']) for message in self.messages])
 
+
     def send(self) -> str:
         log.debug(f'Sending ({self.len_messages:,}B)...')
-        completion = self.openai_client.chat.completions.create(
+        response = self.client.chat(
+            model=self.DEFAULT_MODEL,
             messages=self.messages,
-            model=LLM.DEFAULT_MODEL,
-            **LLM.DEFAULT_OPTIONS,
+            **self.DEFAULT_OPTIONS,
         )
-        reply = completion.choices[0].message.content
+        reply = response.choices[0].message.content
 
         self.append('assistant', reply)
         log.debug(f'Received reply ({self.len_messages:,}B)')

@@ -33,7 +33,7 @@ jobs:
     - name: Run pipeline.py
       run: |
         export PYTHONPATH="$PYTHONPATH:./src"
-        python workflows/pipeline.py "${{ secrets.OPENAI_API_KEY }}"
+        python workflows/pipeline.py "MistralAI" "${{ secrets.MISTRAL_API_KEY }}"
 
     - name: Push to github repo
       run: |
