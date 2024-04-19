@@ -36,10 +36,10 @@ class NewsBulletin:
     def blurb(self) -> str:
         news_article_list = NewsArticle.list_all()
         log.debug(f'Loaded {len(news_article_list)} news articles')
-        if TEST_MODE:
-            MAX_TEST_MODE_ARTICLES = 20
-            log.warn(f'TEST_MODE: processing only {MAX_TEST_MODE_ARTICLES} articles')
-            news_article_list = news_article_list[:MAX_TEST_MODE_ARTICLES]
+        # if TEST_MODE:
+        #     MAX_TEST_MODE_ARTICLES = 20
+        #     log.warn(f'TEST_MODE: processing only {MAX_TEST_MODE_ARTICLES} articles')
+        #     news_article_list = news_article_list[:MAX_TEST_MODE_ARTICLES]
 
         lines = []
         n_total = 0
