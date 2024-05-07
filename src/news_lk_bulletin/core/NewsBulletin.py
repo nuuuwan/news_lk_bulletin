@@ -72,13 +72,7 @@ class NewsBulletin:
             [
                 'Extract objective facts from this set of news articles,',
                 'that might be of practical use to ordinary Sri Lankans,'
-                'and present as 10 detailed bullets.',
-                'EXCLUDE news not directly relevant to Sri Lanka.',
-                'DO NOT duplicate repeat news articles.',
-                'EXCLUDE political opinions/statements by politicians.',
-                'EXCLUDE marketing/propaganda.',
-                'DO mention the name of the source, as "[newspaper]".',
-                'EMPHASIZE named entities and statistics in bold.',
+                'and present as 10 detailed and unique bullets.',
             ]
         )
 
