@@ -26,3 +26,10 @@ class LLMMistralAI(LLM):
             role=role,
             content=content,
         )
+
+    def get_response(self, model: str, messages: list, **options):
+        return self.client.chat(
+            model=model,
+            messages=messages,
+            **options,
+        )

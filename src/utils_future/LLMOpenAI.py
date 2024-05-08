@@ -30,3 +30,10 @@ class LLMOpenAI(LLM):
             role=role,
             content=content,
         )
+
+    def get_response(self, model: str, messages: list, **options):
+        return self.client.chat.completions.create(
+            model=model,
+            messages=messages,
+            **options,
+        )

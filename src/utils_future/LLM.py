@@ -22,7 +22,7 @@ class LLM:
 
     def send(self) -> str:
         log.debug(f'Sending ({self.len_messages:,}B)...')
-        response = self.client.chat(
+        response = self.get_response(
             model=self.DEFAULT_MODEL,
             messages=self.messages,
             **self.DEFAULT_OPTIONS,
