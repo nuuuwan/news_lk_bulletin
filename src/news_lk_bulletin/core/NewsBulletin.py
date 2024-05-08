@@ -70,7 +70,7 @@ class NewsBulletin:
     def system_cmd(self) -> str:
         return ' '.join(
             [
-                'List 10 interesting and unique ideas one could infer from these news articles.',
+                'List 10 interesting and unique follow-up questions an intelligent read could ask about these news articles.',
             ]
         )
 
