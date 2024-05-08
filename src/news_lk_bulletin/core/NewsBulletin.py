@@ -1,13 +1,11 @@
 import os
 import pathlib
-import random
 import shutil
 from functools import cached_property
 
 from utils import File, Log, Time, TimeFormat, TimeUnit
 
 from news_lk_bulletin.core.NewsArticle import NewsArticle
-from news_lk_bulletin.core.SYSTEM_CMD_LIST import SYSTEM_CMD_LIST
 
 log = Log('NewsArticleBulletin')
 
@@ -70,7 +68,9 @@ class NewsBulletin:
 
     @cached_property
     def system_cmd(self) -> str:
-        return random.choice(SYSTEM_CMD_LIST)
+        return '''
+Extract 10 interesting ideas/concepts/insights from the news articles, and present them as 10 bullet points. Use emojis and engaging language to make the content more appealing and easy to digest. Quote the original source. Ask follow-up questions.
+        '''
 
     @cached_property
     def bulletin(self) -> str:
