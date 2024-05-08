@@ -1,11 +1,13 @@
 import os
 import pathlib
+import random
 import shutil
 from functools import cached_property
 
 from utils import File, Log, Time, TimeFormat, TimeUnit
 
 from news_lk_bulletin.core.NewsArticle import NewsArticle
+from news_lk_bulletin.core.SYSTEM_CMD_LIST import SYSTEM_CMD_LIST
 
 log = Log('NewsArticleBulletin')
 
@@ -68,11 +70,7 @@ class NewsBulletin:
 
     @cached_property
     def system_cmd(self) -> str:
-        return ' '.join(
-            [
-                'List 10 interesting and unique follow-up questions an intelligent read could ask about these news articles.',
-            ]
-        )
+        return random.choice(SYSTEM_CMD_LIST)
 
     @cached_property
     def bulletin(self) -> str:

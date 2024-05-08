@@ -26,5 +26,3 @@ class LLMMistralAI(LLM):
             role=role,
             content=content,
         )
-
-

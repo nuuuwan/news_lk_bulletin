@@ -20,7 +20,6 @@ class LLM:
     def len_messages(self):
         return sum([len(message['content']) for message in self.messages])
 
-
     def send(self) -> str:
         log.debug(f'Sending ({self.len_messages:,}B)...')
         response = self.client.chat(

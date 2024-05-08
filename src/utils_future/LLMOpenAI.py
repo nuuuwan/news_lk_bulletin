@@ -9,7 +9,7 @@ log = Log('LLMOpenAI')
 class LLMOpenAI(LLM):
     NAME = 'OpenAI'
     DEFAULT_MODEL = 'gpt-4-0125-preview'
-    
+
     DEFAULT_MODEL_URL = (
         'https://platform.openai.com' + '/docs/models/gpt-4-and-gpt-4-turbo'
     )
@@ -17,7 +17,7 @@ class LLMOpenAI(LLM):
     DEFAULT_OPTIONS = dict(
         temperature=0.1,
     )
-    
+
     @staticmethod
     def build_client(api_key: str):
         return openai.OpenAI(
@@ -30,4 +30,3 @@ class LLMOpenAI(LLM):
             role=role,
             content=content,
         )
-

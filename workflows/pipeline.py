@@ -1,9 +1,12 @@
 import sys
+
 from utils import Log
+
 from news_lk_bulletin import NewsBulletin
 from utils_future import LLMMistralAI, LLMOpenAI
 
 log = Log('pipeline')
+
 
 def main():
     llm_name = sys.argv[1]
