@@ -68,7 +68,7 @@ class NewsBulletin:
 
     @cached_property
     def system_cmd(self) -> str:
-        return '''Extract 5 ideas/concepts/insights from the news articles, and present them as detailed, thoughtful and intelligent bullet points, which pose difficult follow-up questions to the reader.'''
+        return '''Extract 5 insights from the news articles, and present them as detailed, thoughtful and intelligent bullet points, which pose difficult follow-up questions to the reader.'''
 
     @cached_property
     def bulletin(self) -> str:
