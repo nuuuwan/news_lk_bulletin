@@ -70,9 +70,7 @@ class NewsBulletin:
     def system_cmd(self) -> str:
         return ' '.join(
             [
-                'Extract objective facts from this set of news articles,',
-                'that might be of practical use to ordinary Sri Lankans,'
-                'and present as 10 detailed and unique bullets.',
+                'List 10 interesting and unique ideas one could infer from these news articles.',
             ]
         )
 
