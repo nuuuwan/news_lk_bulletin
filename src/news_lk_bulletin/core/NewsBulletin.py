@@ -69,7 +69,7 @@ class NewsBulletin:
     @cached_property
     def system_cmd(self) -> str:
         return '''
-Extract 10 interesting ideas/concepts/insights from the news articles, and present them as 10 bullet points. Use emojis and engaging language to make the content more appealing and easy to digest. Quote the original source. Ask follow-up questions.
+Extract 10 ideas/concepts/insights from the news articles, and present them as 10 detailed, thoughtful and intelligent bullet points. Ask follow-up questions. Quote the original source. 
         '''
 
     @cached_property
