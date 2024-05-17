@@ -10,9 +10,7 @@ class LLMOpenAI(LLM):
     NAME = 'OpenAI'
     DEFAULT_MODEL = 'gpt-4o'
 
-    DEFAULT_MODEL_URL = (
-        'https://platform.openai.com/docs/models/gpt-4o'
-    )
+    DEFAULT_MODEL_URL = 'https://platform.openai.com/docs/models/gpt-4o'
     MAX_DATA_BYTES = 120_000
     DEFAULT_OPTIONS = dict(
         temperature=0.1,
