@@ -68,7 +68,7 @@ class NewsBulletin:
 
     @cached_property
     def system_cmd(self) -> str:
-        return '''Aggregate these news articles into 2 bullet lists: The first listing the 10 most important facts presented; the second listing the 10 most useful opinions expressed.'''
+        return '''Aggregate these news articles into 2 bullet lists: The first listing the 10 most important facts presented; the second listing the 10 most useful opinions expressed. Annotate with emojis, hashtags, bold and italic where appropriate.'''
 
     @cached_property
     def bulletin(self) -> str:
