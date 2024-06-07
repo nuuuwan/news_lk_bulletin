@@ -68,7 +68,7 @@ class NewsBulletin:
 
     @cached_property
     def system_cmd(self) -> str:
-        return '''Aggregate these news articles a list of useful facts (NOT opinions). Quote original source of each fact. Annotate with emojis, hashtags, bold and italic where appropriate.'''
+        return '''Summarize these news articles into 10 bullets, that would be most practically useful for Sri Lankan readers. Quote original source. Annotate with emojis and hashtags:'''
 
     @cached_property
     def bulletin(self) -> str:
