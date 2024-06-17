@@ -68,7 +68,7 @@ class NewsBulletin:
 
     @cached_property
     def system_cmd(self) -> str:
-        return '''Summarize news articles specifically relavent to Sri Lanka, into a bulletin, grouped by topic area. Uprank useful information and facts; downrank opinions, publicity and references to politicians. Annotate with emojis.'''
+        return '''Aggregate these news articles into 10 bullets of information that will be of practical use to Sri Lankan citizens. Specifically mention why the information might be useful in BOLD.'''
 
     @cached_property
     def bulletin(self) -> str:
