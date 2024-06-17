@@ -68,7 +68,7 @@ class NewsBulletin:
 
     @cached_property
     def system_cmd(self) -> str:
-        return '''Aggregate these news articles into 10 bullets of information that will be of practical use to Sri Lankan citizens. Specifically mention why the information might be useful in BOLD.'''
+        return '''Aggregate these news articles into 10 bullets of information that will be practically useful in future decision making to ordinary Sri Lankan citizens. Specifically mention how the information might be useful in BOLD.'''
 
     @cached_property
     def bulletin(self) -> str:
