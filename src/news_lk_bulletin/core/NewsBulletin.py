@@ -68,11 +68,13 @@ class NewsBulletin:
 
     @cached_property
     def system_cmd(self) -> str:
-        return ''.join(['Aggregate these news articles into 10 bullets',
-                        ' of information that will be practically useful',
-                        ' in future decision making to ordinary Sri Lankan citizens.',
-                        ' EXCLUDE opinions, advertisements and political messages.',
-                        'ANNOTATE with emojis'])
+        return ' '.join([
+            'Aggregate these news articles into 10 bullets',
+            'of information that will be practically useful',
+            'to ordinary Sri Lankan citizens.',
+            'EXCLUDE opinions, advertisements and political messages.',
+            'ANNOTATE with emojis.',   
+        ])
 
     @cached_property
     def bulletin(self) -> str:
